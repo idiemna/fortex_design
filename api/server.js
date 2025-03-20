@@ -1,8 +1,7 @@
 const app = require("./app");
+const { PORT } = require("./src/config/config");
 const sequelize = require("./src/config/db");
 require("./src/models/associations")
-
-const PORT = process.env.PORT || 5000;
 
 sequelize
   .sync({ alter: true })
