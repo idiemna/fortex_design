@@ -19,10 +19,30 @@ CREATE TABLE properties (
     type VARCHAR(50) NOT NULL CHECK (type IN ('texto', 'numero', 'fecha', 'check')),
 );
 
-CREATE TABLE properties_types (
+CREATE TABLE propertyType (
     id SERIAL PRIMARY KEY,
     property_id INT NOT NULL,
     type_id INT NOT NULL,
     FOREIGN KEY (property_id) REFERENCES properties(id),
     FOREIGN KEY (type_id) REFERENCES types(id)
 );
+
+INSERT INTO "Types" (name, description) VALUES
+('Vehículo', 'Elementos relacionados con vehículos'),
+('Inmueble', 'Propiedades inmobiliarias'),
+('Electrodoméstico', 'Equipos electrónicos y electrodomésticos');
+
+INSERT INTO "Properties" (name, type) VALUES
+('Color', 'text'),
+('Precio', 'number'),
+('Fecha de fabricación', 'date'),
+('Garantía incluida', 'checkbox');
+
+INSERT INTO "PropertyTypes" (property_id, type_id) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(2, 2),
+(3, 2),
+(4, 3);
