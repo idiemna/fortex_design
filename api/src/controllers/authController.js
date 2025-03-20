@@ -53,7 +53,11 @@ const login = async (req, res) => {
       SECRET_KEY
     );
 
-    res.cookie("token", token, { httpOnly: true });
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    });
 
     res.json({
       message: "Inicio de sesión exitoso",
