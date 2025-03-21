@@ -10,8 +10,12 @@ export async function loginService(email: string, password: string) {
 
     return response;
   } catch (error) {
-    console.log("Error en login:", error);
-    return { ok: false };
+    const message =
+      (error as any).response?.data?.message ||
+      (error as any).message ||
+      "Error al iniciar sesión";
+    console.log("Error en login:", message);
+    return { ok: false, message };
   }
 }
 

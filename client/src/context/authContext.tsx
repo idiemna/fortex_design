@@ -49,7 +49,7 @@ export default function AuthProvider({
 
     let response: any = await loginService(email, password);
     if (response.status !== 200) {
-      setError(response.data?.message || "Error al iniciar sesión");
+      setError(response.message || "Error al iniciar sesión");
       setIsLoading(false);
       return;
     }
