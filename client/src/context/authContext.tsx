@@ -19,6 +19,7 @@ interface AuthContextType {
   user: User | null;
   error: string;
   isAdmin: boolean;
+  isLoading: boolean;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -27,6 +28,7 @@ export const AuthContext = createContext<AuthContextType>({
   user: null,
   error: "",
   isAdmin: false,
+  isLoading: false,
 });
 
 export default function AuthProvider({
@@ -39,23 +41,29 @@ export default function AuthProvider({
   const [user, setUser] = useState<User | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const login = async (email: string, password: string) => {
+    setIsLoading(true);
+    setError("");
+
     let response: any = await loginService(email, password);
     if (response.status !== 200) {
       setError(response.data?.message || "Error al iniciar sesión");
+      setIsLoading(false);
       return;
     }
 
-    router.push("/types");
     setUser(response.data.user);
     setIsAdmin(response.data.user.role === "admin");
+    router.push("/types");
+    setIsLoading(false);
   };
 
   const logout = async () => {
     await logoutService();
-    router.push("/");
     setUser(null);
+    router.push("/");
   };
 
   const getProfile = async () => {
@@ -73,7 +81,7 @@ export default function AuthProvider({
   }, []);
 
   return (
-    <AuthContext.Provider value={{ login, logout, user, error, isAdmin }}>
+    <AuthContext.Provider value={{ login, logout, user, error, isAdmin, isLoading }}>
       {children}
     </AuthContext.Provider>
   );
