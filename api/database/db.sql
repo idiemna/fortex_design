@@ -27,16 +27,16 @@ CREATE TABLE propertyType (
     FOREIGN KEY (type_id) REFERENCES types(id)
 );
 
-INSERT INTO "Types" (name, description) VALUES
-('Vehículo', 'Elementos relacionados con vehículos'),
-('Inmueble', 'Propiedades inmobiliarias'),
-('Electrodoméstico', 'Equipos electrónicos y electrodomésticos');
+INSERT INTO "Types" (name, description, "createdAt", "updatedAt") VALUES
+('Vehículo', 'Elementos relacionados con vehículos', NOW(), NOW()),
+('Inmueble', 'Propiedades inmobiliarias', NOW(), NOW()),
+('Electrodoméstico', 'Equipos electrónicos y electrodomésticos', NOW(), NOW());
 
-INSERT INTO "Properties" (name, type) VALUES
-('Color', 'text'),
-('Precio', 'number'),
-('Fecha de fabricación', 'date'),
-('Garantía incluida', 'checkbox');
+INSERT INTO "Properties" (name, type, "createdAt") VALUES
+('Color', 'text', NOW()),
+('Precio', 'number', NOW()),
+('Fecha de fabricación', 'date', NOW()),
+('Garantía incluida', 'checkbox', NOW());
 
 INSERT INTO "PropertyTypes" (property_id, type_id) VALUES
 (1, 1),

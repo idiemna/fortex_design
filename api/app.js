@@ -15,6 +15,7 @@ app.use(cors({
 app.use(cookieParser());
 app.use(helmet());
 
+app.use("/", require("./src/routes/index"));
 app.use("/api/auth", require("./src/routes/authRoutes"));
 app.use("/api/properties", require("./src/routes/propertyRoutes"));
 app.use("/api/types", require("./src/routes/typesRoutes"));
