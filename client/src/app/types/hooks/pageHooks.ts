@@ -2,21 +2,14 @@ import { deleteType, getAllTypes } from "@/services/typesServices";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { TypeRow } from "../page";
 import { AuthContext } from "@/context/authContext";
-import { DataContext } from "@/context/dataContext";
-
-interface Type {
-  id: number;
-  name: string;
-  description: string;
-  Properties: Array<{ id: number; name: string }> | [];
-}
+import { DataContext, ITypes } from "@/context/dataContext";
 
 export const useHooksPageType = () => {
   const { isAdmin } = useContext(AuthContext);
   const { types, fetchTypes } = useContext(DataContext);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
-  const [typeSelected, setTypeSelected] = useState<Type | null>(null);
+  const [typeSelected, setTypeSelected] = useState<ITypes | null>(null);
   const [openDelete, setOpenDelete] = useState(false);
 
   const getTypes = async () => {
@@ -30,9 +23,8 @@ export const useHooksPageType = () => {
 
   const rows: TypeRow[] = types.map((type) => {
     return {
-      name: type.name,
-      id: type.id,
-      description: type.description,
+      ...type,
+      createdAt: new Date(type.createdAt).toLocaleDateString(),
       properties: type.Properties.map((prop) => prop.name).join(", "),
     };
   });

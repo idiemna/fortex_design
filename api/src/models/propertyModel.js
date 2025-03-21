@@ -18,13 +18,13 @@ const Property = sequelize.define(
       type: DataTypes.ENUM("text", "number", "date", "checkbox"),
       allowNull: false,
     },
-    created_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
   },
   {
-    timestamps: false,
+    timestamps: true,
   }
 );
 

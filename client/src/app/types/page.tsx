@@ -10,6 +10,7 @@ export interface TypeRow {
   id: number;
   description: string;
   properties: string;
+  createdAt: string;
 }
 
 const TypesPage = () => {

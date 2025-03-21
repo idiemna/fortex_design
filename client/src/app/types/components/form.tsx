@@ -38,7 +38,16 @@ const FormTypes = ({ open, onClose, typeData }: FormTypesProps) => {
   } = useHooksFormType({ open, onClose, typeData });
 
   return (
-    <Drawer anchor="right" open={open} onClose={onClose}>
+    <Drawer
+      anchor="right"
+      open={open}
+      onClose={onClose}
+      slotProps={{
+        paper: {
+          sx: { width: { xs: "100%", sm: 400 } },
+        },
+      }}
+    >
       <Box p={3}>
         <Stack direction="row" spacing={2} justifyContent="space-between">
           <Typography variant="h6">

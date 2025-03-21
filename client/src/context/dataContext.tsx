@@ -3,16 +3,18 @@ import { getAllProperties } from "@/services/propertiesServices";
 import { getAllTypes } from "@/services/typesServices";
 import React, { createContext, useState, useEffect } from "react";
 
-interface ITypes {
+export interface ITypes {
   id: number;
   name: string;
   description: string;
   Properties: Array<{ id: number; name: string }>;
+  createdAt: string;
 }
 
-interface IProperties {
+export interface IProperties {
   id: number;
   name: string;
+  createdAt: string;
 }
 
 interface IDataContext {

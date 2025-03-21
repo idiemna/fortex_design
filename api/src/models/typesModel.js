@@ -15,9 +15,13 @@ const Type = sequelize.define("Type", {
   description: {
     type: DataTypes.TEXT,
     allowNull: true,
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
   }
 }, {
-  timestamps: false,
+  timestamps: true,
 });
 
 module.exports = Type;
